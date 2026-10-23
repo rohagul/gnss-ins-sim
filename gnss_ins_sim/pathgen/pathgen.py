@@ -410,6 +410,22 @@ def calc_true_sensor_output(pos_n, vel_b, att, c_nb, vel_dot_b, att_dot, ref_fra
     acc = vel_dot_b + attitude.cross3(w_ie_b+gyro, vel_b) - c_nb.T.dot(gravity)
     return acc, gyro, vel_dot_n, pos_dot_n
 
+def get_sitl_imu_output(acc, gyro):
+    """
+    Get clean IMU output from the SITL stream.
+    Args:
+        acc: 3x1 true accelerometer output in the body frame, m/s/s
+        gyro: 3x1 true gyro output in the body frame, rad/s
+        ref_frame: See doc of function PathGen.
+    Returns:
+        [0]: 3x1 true accelerometer output in the body frame, m/s/s
+        [1]: 3x1 true gyro output in the body frame, rad/s  
+        """
+    
+    return acc, gyro 
+
+
+    
 def parse_motion_def(motion_def_seg, att, vel):
     """
     Parse the command of a segment in motion_def.
